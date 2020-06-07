@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  hydroxide:
+    image: hydroxide
+    container_name: hydroxide
+    restart: unless-stopped
+    ports:
+      - 1143:1143
+      - 1025:1025
+      - 8080:8080
