@@ -5,6 +5,8 @@ services:
     container_name: hydroxide
     restart: unless-stopped
     ports:
-      - 1143:1143
-      - 1025:1025
-      - 8080:8080
+      - 1143:143
+      - 1025:25
+      - 8080:80
+    volumes:
+      - ./data:/hydroxide
