@@ -4,8 +4,12 @@ RUN mkdir /src/
 
 WORKDIR /src/
 
-RUN GO111MODULE=on GOPATH=/src/ go get github.com/emersion/hydroxide/cmd/hydroxide
+RUN apk add git
+RUN git clone https://github.com/emersion/hydroxide.git
 
+WORKDIR /src/hydroxide/
+
+RUN GO111MODULE=on go build ./cmd/hydroxide/
 FROM alpine:latest
 LABEL maintainer="ciiron@pm.me"
 
@@ -14,7 +18,7 @@ RUN mkdir /hydroxide
 
 WORKDIR /usr/bin
 
-COPY --from=builder /src/bin /usr/bin/
+COPY --from=builder /src/hydroxide/hydroxide /usr/bin/
 
 EXPOSE 25
 EXPOSE 143
